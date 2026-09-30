@@ -1,0 +1,412 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* ============================================================
+   RECICLAÍ — Design System Atualizado
+   Paleta: Verde Escuro (#1B5E20) primário, Verde Limão (#7CB342)
+   interativo, Branco (#FFFFFF) fundo, Tons de verde para hierarquia
+   Tipografia: Plus Jakarta Sans (headings) + Nunito Sans (body)
+   ============================================================ */
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  /* Custom Reciclaí colors — Floresta Tecnológica */
+  --color-eco-green-dark: #006633;   /* Verde Escuro Principal */
+  --color-eco-green-medium: #2FAF4A; /* Verde Médio */
+  --color-eco-green-light: #7ED957;  /* Verde Claro Vibrante */
+  --color-eco-light: #F5F7F4;        /* Branco Suave */
+  --color-eco-red: #E63946;          /* Vermelho para Mapa */
+  --color-eco-purple: #9B59B6;       /* Roxo para Radióativos */
+  --color-eco-brown: #8B6F47;        /* Marrom para Orgânicos */
+}
+
+:root {
+  --radius: 0.75rem;
+  /* Verde Escuro como primário (#006633) */
+  --primary: #006633;
+  --primary-foreground: #F5F7F4;
+  /* Verde Médio como secundário (#2FAF4A) */
+  --secondary: #E8F5E9;
+  --secondary-foreground: #006633;
+  /* Fundo branco suave */
+  --background: #F5F7F4;
+  --foreground: #006633;
+  --card: #FFFFFF;
+  --card-foreground: #006633;
+  --popover: #FFFFFF;
+  --popover-foreground: #006633;
+  --muted: #F1F8F5;
+  --muted-foreground: #2FAF4A;
+  --accent: #7ED957;
+  --accent-foreground: #006633;
+  --destructive: #E63946;
+  --destructive-foreground: #FFFFFF;
+  --border: #E0E0E0;
+  --input: #FFFFFF;
+  --ring: #006633;
+  --chart-1: #006633;
+  --chart-2: #2FAF4A;
+  --chart-3: #7ED957;
+  --chart-4: #E63946;
+  --chart-5: #9B59B6;
+  --sidebar: #FFFFFF;
+  --sidebar-foreground: #006633;
+  --sidebar-primary: #006633;
+  --sidebar-primary-foreground: #F5F7F4;
+  --sidebar-accent: #2FAF4A;
+  --sidebar-accent-foreground: #FFFFFF;
+  --sidebar-border: #E0E0E0;
+  --sidebar-ring: #006633;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Nunito Sans', sans-serif;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+  }
+  button:not(:disabled),
+  [role="button"]:not([aria-disabled="true"]),
+  [type="button"]:not(:disabled),
+  [type="submit"]:not(:disabled),
+  [type="reset"]:not(:disabled),
+  a[href],
+  select:not(:disabled),
+  input[type="checkbox"]:not(:disabled),
+  input[type="radio"]:not(:disabled) {
+    @apply cursor-pointer;
+  }
+}
+
+@layer components {
+  .container {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .flex {
+    min-height: 0;
+    min-width: 0;
+  }
+
+  @media (min-width: 640px) {
+    .container {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .container {
+      padding-left: 2rem;
+      padding-right: 2rem;
+      max-width: 1280px;
+    }
+  }
+
+  /* Mobile app wrapper */
+  .mobile-app {
+    max-width: 430px;
+    margin: 0 auto;
+    min-height: 100dvh;
+    position: relative;
+    background: white;
+    overflow: hidden;
+  }
+
+  /* Scan line animation */
+  @keyframes scanLine {
+    0% { top: 10%; }
+    50% { top: 85%; }
+    100% { top: 10%; }
+  }
+
+  .scan-line {
+    animation: scanLine 2s ease-in-out infinite;
+  }
+
+  /* Pulse animation for scanner button */
+  @keyframes ecoPulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(45, 106, 79, 0.4); }
+    50% { box-shadow: 0 0 0 16px rgba(45, 106, 79, 0); }
+  }
+
+  .eco-pulse {
+    animation: ecoPulse 2s ease-in-out infinite;
+  }
+
+  /* Stagger animation */
+  @keyframes fadeSlideUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .fade-slide-up {
+    animation: fadeSlideUp 0.35s cubic-bezier(0.23, 1, 0.32, 1) both;
+  }
+
+  .fade-slide-up-1 { animation-delay: 0ms; }
+  .fade-slide-up-2 { animation-delay: 60ms; }
+  .fade-slide-up-3 { animation-delay: 120ms; }
+  .fade-slide-up-4 { animation-delay: 180ms; }
+  .fade-slide-up-5 { animation-delay: 240ms; }
+  .fade-slide-up-6 { animation-delay: 300ms; }
+
+  /* Active press effect */
+  button:active:not(:disabled) {
+    transform: scale(0.97);
+    transition: transform 160ms cubic-bezier(0.23, 1, 0.32, 1);
+  }
+
+  /* Acessibilidade: foco sempre visível e confortável para teclado */
+  :where(button, a, input, select, textarea, [tabindex]):focus-visible {
+    outline: 3px solid #7ED957;
+    outline-offset: 3px;
+  }
+
+  /* Bin color classes */
+  .bin-blue { background-color: #1565C0; color: white; }
+  .bin-red { background-color: #C62828; color: white; }
+  .bin-green { background-color: #2E7D32; color: white; }
+  .bin-yellow { background-color: #F9A825; color: #1a1a1a; }
+  .bin-orange { background-color: #E65100; color: white; }
+  .bin-brown { background-color: #4E342E; color: white; }
+  .bin-purple { background-color: #6A1B9A; color: white; }
+  .bin-gray { background-color: #546E7A; color: white; }
+
+  /* Quiz answer buttons */
+  .quiz-correct { background-color: #E8F5E9; border-color: #2E7D32; color: #1B5E20; }
+  .quiz-wrong { background-color: #FFEBEE; border-color: #C62828; color: #B71C1C; }
+}
+
+/* Reciclaí — Camadas visuais de acessibilidade
+   A escala amplia tipografia selecionada sem aumentar o viewport nem reflowar a estrutura. */
+html.a11y-font-large {
+  --a11y-text-scale: 1.1;
+}
+
+html.a11y-font-xlarge {
+  --a11y-text-scale: 1.2;
+}
+
+/* Aumenta apenas a tipografia, sem alterar largura, altura ou posição dos controles. */
+html.a11y-font-large [class*="text-xs"],
+html.a11y-font-xlarge [class*="text-xs"] {
+  font-size: calc(0.75rem * var(--a11y-text-scale)) !important;
+  line-height: 1.35 !important;
+}
+
+html.a11y-font-large [class*="text-sm"],
+html.a11y-font-xlarge [class*="text-sm"] {
+  font-size: calc(0.875rem * var(--a11y-text-scale)) !important;
+  line-height: 1.4 !important;
+}
+
+html.a11y-font-large [class*="text-base"],
+html.a11y-font-xlarge [class*="text-base"] {
+  font-size: calc(1rem * var(--a11y-text-scale)) !important;
+  line-height: 1.45 !important;
+}
+
+html.a11y-font-large [class*="text-lg"],
+html.a11y-font-xlarge [class*="text-lg"] {
+  font-size: calc(1.125rem * var(--a11y-text-scale)) !important;
+  line-height: 1.3 !important;
+}
+
+html.a11y-font-large [class*="text-xl"],
+html.a11y-font-xlarge [class*="text-xl"] {
+  font-size: calc(1.25rem * var(--a11y-text-scale)) !important;
+  line-height: 1.25 !important;
+}
+
+html.a11y-font-large [class*="text-2xl"],
+html.a11y-font-xlarge [class*="text-2xl"] {
+  font-size: calc(1.5rem * var(--a11y-text-scale)) !important;
+  line-height: 1.2 !important;
+}
+
+html.a11y-font-large input,
+html.a11y-font-large textarea,
+html.a11y-font-large select,
+html.a11y-font-xlarge input,
+html.a11y-font-xlarge textarea,
+html.a11y-font-xlarge select {
+  font-size: calc(1rem * var(--a11y-text-scale));
+}
+
+html.a11y-font-large .mobile-app,
+html.a11y-font-xlarge .mobile-app {
+  max-width: 430px;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+html.a11y-contrast-high,
+html.a11y-contrast-high body,
+html.a11y-contrast-high #root {
+  background: #000 !important;
+  color: #fff !important;
+}
+
+html.a11y-contrast-high .mobile-app,
+html.a11y-contrast-high [class*="bg-white"],
+html.a11y-contrast-high [class*="bg-gray-50"],
+html.a11y-contrast-high [class*="bg-gray-100"],
+html.a11y-contrast-high [class*="bg-[#F5F7F4]"] {
+  background-color: #000 !important;
+  color: #fff !important;
+}
+
+html.a11y-contrast-high [class*="text-gray-"],
+html.a11y-contrast-high [class*="text-[#006633]"],
+html.a11y-contrast-high [class*="text-[#2D6A4F]"],
+html.a11y-contrast-high [class*="text-[#2FAF4A]"],
+html.a11y-contrast-high [class*="text-muted-foreground"] {
+  color: #fff !important;
+}
+
+html.a11y-contrast-high input,
+html.a11y-contrast-high textarea,
+html.a11y-contrast-high select {
+  background-color: #000 !important;
+  color: #fff !important;
+  border-color: #fff !important;
+}
+
+html.a11y-contrast-high input::placeholder,
+html.a11y-contrast-high textarea::placeholder {
+  color: #e5e5e5 !important;
+}
+
+html.a11y-contrast-high button,
+html.a11y-contrast-high a {
+  text-decoration-thickness: 2px;
+}
+
+html.a11y-contrast-dark,
+html.a11y-contrast-dark body,
+html.a11y-contrast-dark #root {
+  background: #0e1712 !important;
+  color: #f5f7f4 !important;
+}
+
+html.a11y-contrast-dark .mobile-app,
+html.a11y-contrast-dark [class*="bg-white"],
+html.a11y-contrast-dark [class*="bg-gray-50"],
+html.a11y-contrast-dark [class*="bg-gray-100"],
+html.a11y-contrast-dark [class*="bg-[#F5F7F4]"] {
+  background-color: #15231b !important;
+  color: #f5f7f4 !important;
+}
+
+html.a11y-contrast-dark [class*="text-gray-500"],
+html.a11y-contrast-dark [class*="text-gray-600"],
+html.a11y-contrast-dark [class*="text-gray-700"],
+html.a11y-contrast-dark [class*="text-[#006633]"],
+html.a11y-contrast-dark [class*="text-[#2D6A4F]"],
+html.a11y-contrast-dark [class*="text-[#2FAF4A]"] {
+  color: #d6f5dc !important;
+}
+
+html.a11y-contrast-dark input,
+html.a11y-contrast-dark textarea,
+html.a11y-contrast-dark select {
+  background-color: #0e1712 !important;
+  color: #f5f7f4 !important;
+  border-color: #7ED957 !important;
+}
+
+html.a11y-contrast-dark input::placeholder,
+html.a11y-contrast-dark textarea::placeholder {
+  color: #b8d4be !important;
+}
+
+.libras-avatar-speaking {
+  animation: librasAvatar 900ms ease-in-out infinite alternate;
+}
+
+@keyframes librasAvatar {
+  from { transform: translateY(0) rotate(-2deg); }
+  to { transform: translateY(-3px) rotate(2deg); }
+}
+
+.vlibras-embed {
+  min-height: 0;
+}
+
+html.a11y-reduced-motion *,
+html.a11y-reduced-motion *::before,
+html.a11y-reduced-motion *::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  scroll-behavior: auto !important;
+  transition-duration: 0.01ms !important;
+}
+
+@media (max-width: 430px) {
+  [data-accessibility-panel] {
+    right: 0.75rem;
+    max-width: calc(100vw - 1.5rem);
+  }
+
+  [data-accessibility-panel] section {
+    width: min(340px, calc(100vw - 1.5rem));
+  }
+}
+
+/* Smooth scrollbar */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: oklch(0.62 0.13 155 / 0.4); border-radius: 4px; }
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .scan-line, .eco-pulse, .fade-slide-up { animation: none; }
+}
